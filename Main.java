@@ -80,3 +80,11 @@ class PetCare {
         System.out.println();
     }
 }
+
+public class Main {
+    public static void main(String[] args) {
+        PetCare petCare = new PetCare();
+        petCare.getData();
+        petCare.display();
+    }
+}
