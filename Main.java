@@ -25,6 +25,11 @@ class PetCare {
     private Pet[] pets;
     private int numPets;
 
+    public PetCare() {
+        pets = new Pet[MAX_PETS];
+        numPets = 0;
+    }
+
     public void getData() {
         Scanner scanner = new Scanner(System.in);
 
