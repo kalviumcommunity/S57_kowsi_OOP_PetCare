@@ -8,7 +8,11 @@ class Pet {
     private int hungerLevel;
 
     public void setData(int id, String name, String type, int age, int hungerLevel) {
-
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.age = age;
+        this.hungerLevel = hungerLevel;
     }
 
     public void display() {
