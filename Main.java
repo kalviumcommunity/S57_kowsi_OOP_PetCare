@@ -5,8 +5,7 @@ class Pet {
     private String type;
     private int age;
     private int hungerLevel;
-
-    
+  
     public Pet(int id, String name, String type, int age, int hungerLevel) {
         this.id = id;
         this.name = name;
