@@ -1,17 +1,24 @@
 import java.util.Scanner;
+
 class Pet {
+    private static int totalPets = 0;  
     private int id;
     private String name;
     private String type;
     private int age;
     private int hungerLevel;
-  
+
     public Pet(int id, String name, String type, int age, int hungerLevel) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.age = age;
         this.hungerLevel = hungerLevel;
+        totalPets++; 
+    }
+
+    public static int getTotalPets() {  
+        return totalPets;
     }
 
     public void display() {
@@ -20,7 +27,7 @@ class Pet {
 }
 
 class PetCare {
-    private static final int MAX_PETS = 100;
+    private static final int MAX_PETS = 100;  
     private Pet[] pets;
     private int numPets;
 
@@ -76,6 +83,7 @@ class PetCare {
             pets[i].display();
         }
         System.out.println();
+        System.out.println("Total Pets Created: " + Pet.getTotalPets()); 
     }
 }
 
