@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 class Pet {
     private int id;
     private String name;
@@ -7,8 +6,13 @@ class Pet {
     private int age;
     private int hungerLevel;
 
-    public void setData(int id, String name, String type, int age, int hungerLevel) {
-
+    
+    public Pet(int id, String name, String type, int age, int hungerLevel) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.age = age;
+        this.hungerLevel = hungerLevel;
     }
 
     public void display() {
@@ -60,8 +64,7 @@ class PetCare {
             hungerLevel = scanner.nextInt();
             scanner.nextLine();
 
-            pets[i] = new Pet();
-            pets[i].setData(id, name, type, age, hungerLevel);
+            pets[i] = new Pet(id, name, type, age, hungerLevel);
         }
 
         scanner.close();
