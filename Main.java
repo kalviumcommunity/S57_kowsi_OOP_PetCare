@@ -21,6 +21,11 @@ class Pet {
         return totalPets;
     }
 
+    // Static method to reset the total number of pets
+    public static void resetTotalPets() {
+        totalPets = 0;
+    }
+
     public void display() {
         System.out.println(id + "\t\t" + name + "\t\t" + type + "\t\t" + age + "\t\t" + hungerLevel);
     }
@@ -85,6 +90,13 @@ class PetCare {
         System.out.println();
         System.out.println("Total Pets Created: " + Pet.getTotalPets()); 
     }
+
+    // Method to reset pet data
+    public void resetPetsData() {
+        Pet.resetTotalPets();  // Resetting the total pet count using the static method
+        numPets = 0;
+        System.out.println("All pet data has been reset.");
+    }
 }
 
 public class Main {
@@ -92,5 +104,8 @@ public class Main {
         PetCare petCare = new PetCare();
         petCare.getData();
         petCare.display();
+        
+        petCare.resetPetsData();
+        petCare.display(); // Will show no pets, as data is reset
     }
 }
