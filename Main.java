@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 class Pet {
-    private static int totalPets = 0;  
+    private static int totalPets = 0; 
     private int id;
     private String name;
     private String type;
@@ -14,14 +14,55 @@ class Pet {
         this.type = type;
         this.age = age;
         this.hungerLevel = hungerLevel;
-        totalPets++; 
+        totalPets++;
     }
 
-    public static int getTotalPets() {  
+    // Getters (Accessors)
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getHungerLevel() {
+        return hungerLevel;
+    }
+
+    // Setters (Mutators)
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHungerLevel(int hungerLevel) {
+        this.hungerLevel = hungerLevel;
+    }
+
+    public static int getTotalPets() {
         return totalPets;
     }
 
-    // Static method to reset the total number of pets
     public static void resetTotalPets() {
         totalPets = 0;
     }
@@ -31,9 +72,10 @@ class Pet {
     }
 }
 
+
 class PetCare {
-    private static final int MAX_PETS = 100;  
-    private Pet[] pets;
+    private static final int MAX_PETS = 100;
+    private Pet[] pets; 
     private int numPets;
 
     public PetCare() {
@@ -54,58 +96,55 @@ class PetCare {
         }
 
         for (int i = 0; i < numPets; i++) {
-            int id, age, hungerLevel;
-            String name, type;
-
             System.out.print("Enter Pet ID: ");
-            id = scanner.nextInt();
+            int id = scanner.nextInt();
             scanner.nextLine();
 
             System.out.print("Enter Pet Name: ");
-            name = scanner.nextLine();
+            String name = scanner.nextLine();
 
             System.out.print("Enter Pet Type: ");
-            type = scanner.nextLine();
+            String type = scanner.nextLine();
 
             System.out.print("Enter Pet Age: ");
-            age = scanner.nextInt();
+            int age = scanner.nextInt();
             scanner.nextLine();
 
             System.out.print("Enter Pet Hunger Level: ");
-            hungerLevel = scanner.nextInt();
+            int hungerLevel = scanner.nextInt();
             scanner.nextLine();
 
+            // Create new Pet object using constructor and set data via setters
             pets[i] = new Pet(id, name, type, age, hungerLevel);
         }
-
-        scanner.close();
     }
 
     public void display() {
         System.out.println("PetCare Pets");
         System.out.println("ID \t\t Name \t\t Type \t\t Age \t\t Hunger Level");
         for (int i = 0; i < numPets; i++) {
-            pets[i].display();
+            pets[i].display(); 
         }
         System.out.println();
         System.out.println("Total Pets Created: " + Pet.getTotalPets()); 
     }
 
-    // Method to reset pet data
     public void resetPetsData() {
-        Pet.resetTotalPets();  // Resetting the total pet count using the static method
+        Pet.resetTotalPets();
         numPets = 0;
         System.out.println("All pet data has been reset.");
     }
 }
 
+// Main class
 public class Main {
     public static void main(String[] args) {
         PetCare petCare = new PetCare();
-        petCare.getData();
-        petCare.display();
+        petCare.getData();  
+        petCare.display(); 
         
-        petCare.resetPetsData();
-        petCare.display(); // Will show no pets, as data is reset
+        petCare.resetPetsData();  
+        petCare.display();
     }
 }
+
