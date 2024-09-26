@@ -1,33 +1,26 @@
 import java.util.Scanner;
 
-class Pet {
+abstract class Pet {
     private static int totalPets = 0; 
     private int id;
     private String name;
-    private String type;
     private int age;
     private int hungerLevel;
 
-    public Pet(int id, String name, String type, int age, int hungerLevel) {
+    public Pet(int id, String name, int age, int hungerLevel) {
         this.id = id;
         this.name = name;
-        this.type = type;
         this.age = age;
         this.hungerLevel = hungerLevel;
         totalPets++;
     }
 
-    // Getters (Accessors)
     public int getId() {
         return id;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public int getAge() {
@@ -38,17 +31,12 @@ class Pet {
         return hungerLevel;
     }
 
-    // Setters (Mutators)
     public void setId(int id) {
         this.id = id;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public void setAge(int age) {
@@ -67,11 +55,42 @@ class Pet {
         totalPets = 0;
     }
 
+    public abstract String getType();
+
+    public abstract void display();
+}
+
+class Dog extends Pet {
+    public Dog(int id, String name, int age, int hungerLevel) {
+        super(id, name, age, hungerLevel);
+    }
+
+    @Override
+    public String getType() {
+        return "Dog";
+    }
+
+    @Override
     public void display() {
-        System.out.println(id + "\t\t" + name + "\t\t" + type + "\t\t" + age + "\t\t" + hungerLevel);
+        System.out.println(getId() + "\t\t" + getName() + "\t\t" + getType() + "\t\t" + getAge() + "\t\t" + getHungerLevel());
     }
 }
 
+class Cat extends Pet {
+    public Cat(int id, String name, int age, int hungerLevel) {
+        super(id, name, age, hungerLevel);
+    }
+
+    @Override
+    public String getType() {
+        return "Cat";
+    }
+
+    @Override
+    public void display() {
+        System.out.println(getId() + "\t\t" + getName() + "\t\t" + getType() + "\t\t" + getAge() + "\t\t" + getHungerLevel());
+    }
+}
 
 class PetCare {
     private static final int MAX_PETS = 100;
@@ -96,15 +115,15 @@ class PetCare {
         }
 
         for (int i = 0; i < numPets; i++) {
+            System.out.print("Enter Pet Type (Dog/Cat): ");
+            String type = scanner.nextLine();
+
             System.out.print("Enter Pet ID: ");
             int id = scanner.nextInt();
             scanner.nextLine();
 
             System.out.print("Enter Pet Name: ");
             String name = scanner.nextLine();
-
-            System.out.print("Enter Pet Type: ");
-            String type = scanner.nextLine();
 
             System.out.print("Enter Pet Age: ");
             int age = scanner.nextInt();
@@ -114,8 +133,14 @@ class PetCare {
             int hungerLevel = scanner.nextInt();
             scanner.nextLine();
 
-            // Create new Pet object using constructor and set data via setters
-            pets[i] = new Pet(id, name, type, age, hungerLevel);
+            if (type.equalsIgnoreCase("Dog")) {
+                pets[i] = new Dog(id, name, age, hungerLevel);
+            } else if (type.equalsIgnoreCase("Cat")) {
+                pets[i] = new Cat(id, name, age, hungerLevel);
+            } else {
+                System.out.println("Unknown pet type! Defaulting to Dog.");
+                pets[i] = new Dog(id, name, age, hungerLevel); // Default to Dog if type is unknown
+            }
         }
     }
 
@@ -136,7 +161,6 @@ class PetCare {
     }
 }
 
-// Main class
 public class Main {
     public static void main(String[] args) {
         PetCare petCare = new PetCare();
@@ -147,4 +171,3 @@ public class Main {
         petCare.display();
     }
 }
-
