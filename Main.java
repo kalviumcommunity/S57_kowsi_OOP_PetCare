@@ -7,12 +7,24 @@ abstract class Pet {
     private int age;
     private int hungerLevel;
 
+    // Default Constructor
+    public Pet() {
+        this.id = 0;
+        this.name = "Unknown";
+        this.age = 0;
+        this.hungerLevel = 0;
+        totalPets++;
+        System.out.println("Default Constructor called for Pet");
+    }
+
+    // Parameterized Constructor
     public Pet(int id, String name, int age, int hungerLevel) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.hungerLevel = hungerLevel;
         totalPets++;
+        System.out.println("Parameterized Constructor called for Pet");
     }
 
     public int getId() {
@@ -55,12 +67,25 @@ abstract class Pet {
         totalPets = 0;
     }
 
+    // Destructor Simulation using finalize method
+    @Override
+    protected void finalize() throws Throwable {
+        totalPets--;
+        System.out.println("Pet object is being destroyed, totalPets: " + totalPets);
+    }
+
     public abstract String getType();
 
     public abstract void display();
 }
 
 class Dog extends Pet {
+    // Using Default Constructor
+    public Dog() {
+        super();
+    }
+
+    // Using Parameterized Constructor
     public Dog(int id, String name, int age, int hungerLevel) {
         super(id, name, age, hungerLevel);
     }
@@ -77,6 +102,12 @@ class Dog extends Pet {
 }
 
 class Cat extends Pet {
+    // Using Default Constructor
+    public Cat() {
+        super();
+    }
+
+    // Using Parameterized Constructor
     public Cat(int id, String name, int age, int hungerLevel) {
         super(id, name, age, hungerLevel);
     }
@@ -139,7 +170,7 @@ class PetCare {
                 pets[i] = new Cat(id, name, age, hungerLevel);
             } else {
                 System.out.println("Unknown pet type! Defaulting to Dog.");
-                pets[i] = new Dog(id, name, age, hungerLevel); // Default to Dog if type is unknown
+                pets[i] = new Dog(id, name, age, hungerLevel); 
             }
         }
     }
@@ -169,5 +200,8 @@ public class Main {
         
         petCare.resetPetsData();  
         petCare.display();
+        
+        // Triggering destructor for demonstration
+        System.gc(); // Forces garbage collection to call the finalize method
     }
 }
