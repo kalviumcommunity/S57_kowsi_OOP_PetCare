@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 abstract class Pet {
-    private static int totalPets = 0; 
+    private static int totalPets = 0;
     private int id;
     private String name;
     private int age;
@@ -79,6 +79,7 @@ abstract class Pet {
     public abstract void display();
 }
 
+// Single Inheritance: Dog inherits from Pet
 class Dog extends Pet {
     // Using Default Constructor
     public Dog() {
@@ -101,6 +102,7 @@ class Dog extends Pet {
     }
 }
 
+// Hierarchical Inheritance: Cat inherits from Pet
 class Cat extends Pet {
     // Using Default Constructor
     public Cat() {
@@ -120,6 +122,60 @@ class Cat extends Pet {
     @Override
     public void display() {
         System.out.println(getId() + "\t\t" + getName() + "\t\t" + getType() + "\t\t" + getAge() + "\t\t" + getHungerLevel());
+    }
+}
+
+// Hierarchical Inheritance: Bird inherits from Pet
+class Bird extends Pet {
+    // Using Default Constructor
+    public Bird() {
+        super();
+    }
+
+    // Using Parameterized Constructor
+    public Bird(int id, String name, int age, int hungerLevel) {
+        super(id, name, age, hungerLevel);
+    }
+
+    @Override
+    public String getType() {
+        return "Bird";
+    }
+
+    @Override
+    public void display() {
+        System.out.println(getId() + "\t\t" + getName() + "\t\t" + getType() + "\t\t" + getAge() + "\t\t" + getHungerLevel());
+    }
+}
+
+// Multi-Level Inheritance: GuideDog inherits from Dog, which inherits from Pet
+class GuideDog extends Dog {
+    private String serviceType;
+
+    // Using Default Constructor
+    public GuideDog() {
+        super();
+        this.serviceType = "Unknown";
+    }
+
+    // Using Parameterized Constructor
+    public GuideDog(int id, String name, int age, int hungerLevel, String serviceType) {
+        super(id, name, age, hungerLevel);
+        this.serviceType = serviceType;
+    }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    @Override
+    public void display() {
+        super.display();
+        System.out.println("\t\t" + "Service Type: " + getServiceType());
     }
 }
 
@@ -146,7 +202,7 @@ class PetCare {
         }
 
         for (int i = 0; i < numPets; i++) {
-            System.out.print("Enter Pet Type (Dog/Cat): ");
+            System.out.print("Enter Pet Type (Dog/Cat/Bird/GuideDog): ");
             String type = scanner.nextLine();
 
             System.out.print("Enter Pet ID: ");
@@ -168,6 +224,12 @@ class PetCare {
                 pets[i] = new Dog(id, name, age, hungerLevel);
             } else if (type.equalsIgnoreCase("Cat")) {
                 pets[i] = new Cat(id, name, age, hungerLevel);
+            } else if (type.equalsIgnoreCase("Bird")) {
+                pets[i] = new Bird(id, name, age, hungerLevel);
+            } else if (type.equalsIgnoreCase("GuideDog")) {
+                System.out.print("Enter Service Type for GuideDog: ");
+                String serviceType = scanner.nextLine();
+                pets[i] = new GuideDog(id, name, age, hungerLevel, serviceType);
             } else {
                 System.out.println("Unknown pet type! Defaulting to Dog.");
                 pets[i] = new Dog(id, name, age, hungerLevel); 
