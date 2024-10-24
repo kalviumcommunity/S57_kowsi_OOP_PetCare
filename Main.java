@@ -17,7 +17,7 @@ abstract class Pet {
         System.out.println("Default Constructor called for Pet");
     }
 
-    // Parameterized Constructor
+    // Parameterized Constructor (Constructor Overloading)
     public Pet(int id, String name, int age, int hungerLevel) {
         this.id = id;
         this.name = name;
@@ -27,6 +27,7 @@ abstract class Pet {
         System.out.println("Parameterized Constructor called for Pet");
     }
 
+    // Getter and Setter Methods
     public int getId() {
         return id;
     }
@@ -74,9 +75,9 @@ abstract class Pet {
         System.out.println("Pet object is being destroyed, totalPets: " + totalPets);
     }
 
-    public abstract String getType();
-
-    public abstract void display();
+    // Abstract methods for polymorphism demonstration
+    public abstract String getType(); // Overridden in subclasses (Method Overriding)
+    public abstract void display();   // Overridden in subclasses (Method Overriding)
 }
 
 // Single Inheritance: Dog inherits from Pet
@@ -158,7 +159,7 @@ class GuideDog extends Dog {
         this.serviceType = "Unknown";
     }
 
-    // Using Parameterized Constructor
+    // Using Parameterized Constructor (Constructor Overloading)
     public GuideDog(int id, String name, int age, int hungerLevel, String serviceType) {
         super(id, name, age, hungerLevel);
         this.serviceType = serviceType;
