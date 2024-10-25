@@ -68,14 +68,7 @@ abstract class Pet {
         totalPets = 0;
     }
 
-    // Destructor Simulation using finalize method
-    @Override
-    protected void finalize() throws Throwable {
-        totalPets--;
-        System.out.println("Pet object is being destroyed, totalPets: " + totalPets);
-    }
-
-    // Abstract methods for polymorphism demonstration
+    // Abstract methods (Virtual Functions in Java are dynamically bound)
     public abstract String getType(); // Overridden in subclasses (Method Overriding)
     public abstract void display();   // Overridden in subclasses (Method Overriding)
 }
@@ -149,7 +142,7 @@ class Bird extends Pet {
     }
 }
 
-// Multi-Level Inheritance: GuideDog inherits from Dog, which inherits from Pet
+// Multi-Level Inheritance: GuideDog inherits from Dog
 class GuideDog extends Dog {
     private String serviceType;
 
@@ -263,8 +256,5 @@ public class Main {
         
         petCare.resetPetsData();  
         petCare.display();
-        
-        // Triggering destructor for demonstration
-        System.gc(); // Forces garbage collection to call the finalize method
     }
 }
