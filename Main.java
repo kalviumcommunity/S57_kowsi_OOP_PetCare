@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Abstract base class representing a Pet
 abstract class Pet {
     private static int totalPets = 0;
     private int id;
@@ -8,7 +7,6 @@ abstract class Pet {
     private int age;
     private int hungerLevel;
 
-    // Constructor to initialize Pet attributes
     public Pet(int id, String name, int age, int hungerLevel) {
         this.id = id;
         this.name = name;
@@ -17,7 +15,6 @@ abstract class Pet {
         totalPets++;
     }
 
-    // Getters
     public int getId() {
         return id;
     }
@@ -34,22 +31,18 @@ abstract class Pet {
         return hungerLevel;
     }
 
-    // Static method to get total number of pets created
     public static int getTotalPets() {
         return totalPets;
     }
 
-    // Static method to reset the total count of pets
     public static void resetTotalPets() {
         totalPets = 0;
     }
 
-    // Abstract methods to be implemented by subclasses
     public abstract String getType();
     public abstract void display();
 }
 
-// Class representing a Dog (inherits from Pet)
 class Dog extends Pet {
     public Dog(int id, String name, int age, int hungerLevel) {
         super(id, name, age, hungerLevel);
@@ -66,7 +59,6 @@ class Dog extends Pet {
     }
 }
 
-// Class representing a Cat (inherits from Pet)
 class Cat extends Pet {
     public Cat(int id, String name, int age, int hungerLevel) {
         super(id, name, age, hungerLevel);
@@ -83,7 +75,6 @@ class Cat extends Pet {
     }
 }
 
-// Class representing a Bird (inherits from Pet)
 class Bird extends Pet {
     public Bird(int id, String name, int age, int hungerLevel) {
         super(id, name, age, hungerLevel);
@@ -100,7 +91,6 @@ class Bird extends Pet {
     }
 }
 
-// Class representing a GuideDog (inherits from Dog)
 class GuideDog extends Dog {
     private String serviceType;
 
@@ -115,12 +105,10 @@ class GuideDog extends Dog {
 
     @Override
     public void display() {
-        super.display();
-        System.out.printf("\tService Type: %s%n", getServiceType());
+        System.out.printf("%d\t%s\t%s\t%d\t%d\t%s%n", getId(), getName(), getType(), getAge(), getHungerLevel(), getServiceType());
     }
 }
 
-// Class to manage Pet operations
 class PetCare {
     private static final int MAX_PETS = 100;
     private Pet[] pets;
@@ -131,7 +119,6 @@ class PetCare {
         numPets = 0;
     }
 
-    // Method to collect pet data
     public void getData() {
         Scanner scanner = new Scanner(System.in);
 
@@ -186,16 +173,14 @@ class PetCare {
         }
     }
 
-    // Method to display pet data
     public void display() {
-        System.out.println("ID\tName\tType\tAge\tHunger Level");
+        System.out.println("ID\tName\tType\tAge\tHunger Level\tService Type");
         for (int i = 0; i < numPets; i++) {
             pets[i].display();
         }
         System.out.println("\nTotal Pets Created: " + Pet.getTotalPets());
     }
 
-    // Method to reset pet data
     public void resetPetsData() {
         Pet.resetTotalPets();
         numPets = 0;
@@ -203,7 +188,6 @@ class PetCare {
     }
 }
 
-// Main class
 public class Main {
     public static void main(String[] args) {
         PetCare petCare = new PetCare();
