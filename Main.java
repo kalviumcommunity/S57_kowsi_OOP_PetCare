@@ -59,6 +59,7 @@ class Dog extends Pet {
     }
 }
 
+
 class Cat extends Pet {
     public Cat(int id, String name, int age, int hungerLevel) {
         super(id, name, age, hungerLevel);
@@ -74,6 +75,7 @@ class Cat extends Pet {
         System.out.printf("%d\t%s\t%s\t%d\t%d%n", getId(), getName(), getType(), getAge(), getHungerLevel());
     }
 }
+
 
 class Bird extends Pet {
     public Bird(int id, String name, int age, int hungerLevel) {
@@ -133,7 +135,7 @@ class PetCare {
 
         for (int i = 0; i < numPets; i++) {
             System.out.print("Enter Pet Type (Dog/Cat/Bird/GuideDog): ");
-            String type = scanner.nextLine();
+            String type = scanner.nextLine().toLowerCase();
 
             System.out.print("Enter ID: ");
             int id = scanner.nextInt();
@@ -150,7 +152,7 @@ class PetCare {
             int hungerLevel = scanner.nextInt();
             scanner.nextLine();
 
-            switch (type.toLowerCase()) {
+            switch (type) {
                 case "dog":
                     pets[i] = new Dog(id, name, age, hungerLevel);
                     break;
